@@ -344,8 +344,8 @@ def ccp(B: list[int], i: int, j: int) -> list[int, int]:
 # porque si lo hago asi tengo q cambio los valores de posiciones q puedo llegar a usar dsp
 def ccp_bottom(B: list[int], i:int, j:int) -> list[int, int]:
     curr = [[float("inf"), float("inf")] for _ in range(j + 1)]
-    prev = R.copy()
-    R[0] = [0,0]
+    prev = curr.copy()
+    curr[0] = [0,0]
     for i in range(i, 0, -1):
         for j in range(1, j + 1):
             resta = j - B[i -1] if j >= B[i - 1] else 0
@@ -360,3 +360,61 @@ def ccp_bottom(B: list[int], i:int, j:int) -> list[int, int]:
 print(ccp_bottom([2, 3, 5, 10, 20, 20], 6, 14))
 
 #g Ej de demostracion consultar
+
+
+#ej 7
+#Arranque asi para asegurarme que la idea este bien
+#La complejidad seria 3^n?
+def mgn(P: tuple[int], asteroid_amount:int , current_day: int):
+    if asteroid_amount < 0 or asteroid_amount > current_day:
+        return float("-inf")
+    if current_day == 0:
+        return 0
+    else:
+        return max(mgn(P, asteroid_amount + 1, current_day - 1) + P[current_day - 1], mgn(P, asteroid_amount - 1, current_day - 1) - P[current_day - 1], mgn(P, asteroid_amount, current_day - 1))
+
+#La complejidad espacial y temproal seria n^2?
+result = []
+def mgn_pd_top(P: tuple[int], asteroid_amount:int , current_day: int):
+    global result
+    if not result:
+        result = [[None for _ in range(current_day)] for 
+              _ in range(current_day + 1)]
+        result[0] = [0 for _ in range(current_day)]
+    if asteroid_amount < 0 or asteroid_amount > current_day:
+        return float("-inf")
+    if current_day == 0:
+        return 0
+    if not result[current_day][asteroid_amount]:
+        result[current_day][asteroid_amount] = max(mgn(P, asteroid_amount + 1, current_day - 1) + P[current_day - 1], mgn(P, asteroid_amount - 1, current_day - 1) - P[current_day - 1], mgn(P, asteroid_amount, current_day - 1))
+    return result[current_day][asteroid_amount]
+
+# print(mgn_pd_top((6,7), 0, 2))
+
+#falta implemenat el bottom up
+
+
+#Ej 8
+#d)
+ce_top_res = []
+def ce_top(cuts, since, to):
+    global ce_top_res
+    if not ce_top_res:
+        ce_top_res = [[None for _ in range(to)] for _ in range(to + 1)]
+    if not ce_top_res[to][since]:
+        cost = to - since 
+        possible_costs = []
+        for cut in cuts:
+            if not (since < cut < to):
+                continue
+            possible_costs.append(ce_top(cuts, since, cut) + ce_top(cuts, cut, to))
+        if possible_costs:
+            ce_top_res[to][since] = cost + min(possible_costs)
+        else:
+            ce_top_res[to][since] = 0
+    return ce_top_res[to][since]
+    
+print(ce_top((2,4,7), 0, 10))
+
+# def ce_bottom(cuts, since, to):
+#     for i in range()
