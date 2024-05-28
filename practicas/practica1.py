@@ -418,3 +418,9 @@ print(ce_top((2,4,7), 0, 10))
 
 # def ce_bottom(cuts, since, to):
 #     for i in range()
+
+#d) no entiendo
+
+
+
+#9
