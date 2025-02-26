@@ -12,6 +12,17 @@ class Graph {
     std::list<std::tuple<int, int, int>>         m_edges;
     std::vector<std::list<std::tuple<int, int>>> m_g{};
 
+    // class DisjointSetp {
+    //     DisjointSetp *m_padre;
+    //     int           node{};
+    //     int           rank{};
+
+    //   public:
+    //     DisjointSetp(int node)
+    //         : node{node}, rank{0}, m_padre{this} {}
+    //     int getNode
+    // };
+
     class DisjointSet {
         // Rango de cada una de los conjuntos
         std::vector<int> m_ranks{};

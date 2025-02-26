@@ -2,8 +2,8 @@ import time
 import np
 # Ej 1
 #a) (Comsultar)
-#Las soluciones candidatas serian aquellas tuplas de tres elementos cuyos vaores pueden ser 1 o 0
-#o, en otras palabras, todas las posibles permutaciones de tuplas de tras elementos dodede cada elemento puede tomar solo dos valores.
+#Las soluciones candidatas serian aquellas tuplas de tres elementos cuyos valores pueden ser 1 o 0
+#o, en otras palabras, todas las posibles permutaciones de tuplas de tres elementos dodede cada elemento puede tomar solo dos valores.
 #Algunos ejemplos: (0,0,0) (0,1,1) etc.
 
 #b) (1,0,1) (0,1,0)
@@ -58,7 +58,7 @@ def ss (c, i, j, v):
 #a (n^2)!
 #b
 
-#Dictionary for fast lookup on whether or not a specific number isp present
+#Dictionary for fast lookup on whether or not a specific number is present
 missing_numbers = []
 present_numbers = {}
 generated_squares = []
